@@ -16,6 +16,7 @@
 #     BUILD_REQUIRES => { Test::More=>q[0] }
 #     CONFIGURE_REQUIRES => { ExtUtils::MakeMaker=>q[0] }
 #     LICENSE => q[Artistic_2_0]
+#     META_MERGE => { resources=>{ repository=>{ web=>q[https://github.com/thanos1983/perl5-Net-SNTP-Client], type=>q[git], url=>q[https://github.com/thanos1983/perl5-Net-SNTP-Client.git] } }, meta-spec=>{ version=>q[20] } }
 #     MIN_PERL_VERSION => q[5.006]
 #     NAME => q[Net::SNTP::Client]
 #     PL_FILES => {  }
@@ -62,11 +63,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = Net::SNTP::Client
 NAME_SYM = Net_SNTP_Client
-VERSION = 0.19
+VERSION = 0.20
 VERSION_MACRO = VERSION
-VERSION_SYM = 0_19
+VERSION_SYM = 0_20
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = 0.19
+XS_VERSION = 0.20
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -260,7 +261,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = Net-SNTP-Client
-DISTVNAME = Net-SNTP-Client-0.19
+DISTVNAME = Net-SNTP-Client-0.20
 
 
 # --- MakeMaker macro section:
@@ -443,22 +444,22 @@ clean_subdirs :
 
 clean :: clean_subdirs
 	- $(RM_F) \
-	  *perl.core *$(OBJ_EXT) \
-	  $(BASEEXT).bso $(MAKE_APERL_FILE) \
-	  core.[0-9] $(BASEEXT).exp \
-	  core.[0-9][0-9] perlmain.c \
-	  perl$(EXE_EXT) $(INST_ARCHAUTODIR)/extralibs.all \
-	  core.[0-9][0-9][0-9][0-9] perl.exe \
-	  core.[0-9][0-9][0-9][0-9][0-9] MYMETA.json \
-	  lib$(BASEEXT).def core.[0-9][0-9][0-9] \
-	  *$(LIB_EXT) $(BASEEXT).x \
-	  core.*perl.*.? blibdirs.ts \
-	  core $(BASEEXT).def \
-	  mon.out $(BOOTSTRAP) \
-	  so_locations tmon.out \
-	  pm_to_blib $(INST_ARCHAUTODIR)/extralibs.ld \
-	  perl MYMETA.yml \
-	  pm_to_blib.ts 
+	  $(BASEEXT).exp lib$(BASEEXT).def \
+	  core.[0-9][0-9][0-9][0-9] *perl.core \
+	  *$(LIB_EXT) so_locations \
+	  core.[0-9] core.[0-9][0-9] \
+	  mon.out $(INST_ARCHAUTODIR)/extralibs.all \
+	  pm_to_blib *$(OBJ_EXT) \
+	  perl$(EXE_EXT) $(BASEEXT).def \
+	  $(BASEEXT).bso $(BOOTSTRAP) \
+	  core perlmain.c \
+	  pm_to_blib.ts blibdirs.ts \
+	  perl perl.exe \
+	  MYMETA.yml core.[0-9][0-9][0-9][0-9][0-9] \
+	  $(MAKE_APERL_FILE) $(BASEEXT).x \
+	  core.*perl.*.? core.[0-9][0-9][0-9] \
+	  $(INST_ARCHAUTODIR)/extralibs.ld MYMETA.json \
+	  tmon.out 
 	- $(RM_RF) \
 	  blib Net-SNTP-Client-* 
 	- $(MV) $(FIRST_MAKEFILE) $(MAKEFILE_OLD) $(DEV_NULL)
@@ -485,10 +486,8 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) 'abstract: '\''Perl module to calculate the roundtrip delay d and'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'author:' >> META_new.yml
 	$(NOECHO) $(ECHO) '  - '\''Athanasios Garyfalos <garyfalos@cpan.org>'\''' >> META_new.yml
-	$(NOECHO) $(ECHO) 'build_requires:' >> META_new.yml
-	$(NOECHO) $(ECHO) '  Test::More: 0' >> META_new.yml
-	$(NOECHO) $(ECHO) 'configure_requires:' >> META_new.yml
-	$(NOECHO) $(ECHO) '  ExtUtils::MakeMaker: 0' >> META_new.yml
+	$(NOECHO) $(ECHO) 'build_requires: {}' >> META_new.yml
+	$(NOECHO) $(ECHO) 'distribution_type: module' >> META_new.yml
 	$(NOECHO) $(ECHO) 'dynamic_config: 1' >> META_new.yml
 	$(NOECHO) $(ECHO) 'generated_by: '\''ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.120921'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'license: unknown' >> META_new.yml
@@ -500,10 +499,9 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '  directory:' >> META_new.yml
 	$(NOECHO) $(ECHO) '    - t' >> META_new.yml
 	$(NOECHO) $(ECHO) '    - inc' >> META_new.yml
-	$(NOECHO) $(ECHO) 'requires:' >> META_new.yml
-	$(NOECHO) $(ECHO) '  Test::Deep: 0' >> META_new.yml
-	$(NOECHO) $(ECHO) '  perl: 5.006' >> META_new.yml
-	$(NOECHO) $(ECHO) 'version: 0.19' >> META_new.yml
+	$(NOECHO) $(ECHO) 'resources:' >> META_new.yml
+	$(NOECHO) $(ECHO) '  repository: https://github.com/thanos1983/perl5-Net-SNTP-Client.git' >> META_new.yml
+	$(NOECHO) $(ECHO) 'version: 0.20' >> META_new.yml
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
 	$(NOECHO) $(ECHO) Generating META.json
 	$(NOECHO) $(ECHO) '{' > META_new.json
@@ -511,14 +509,19 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '   "author" : [' >> META_new.json
 	$(NOECHO) $(ECHO) '      "Athanasios Garyfalos <garyfalos@cpan.org>"' >> META_new.json
 	$(NOECHO) $(ECHO) '   ],' >> META_new.json
+	$(NOECHO) $(ECHO) '   "build_requires" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '      "Test::More" : "0"' >> META_new.json
+	$(NOECHO) $(ECHO) '   },' >> META_new.json
+	$(NOECHO) $(ECHO) '   "configure_requires" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '      "ExtUtils::MakeMaker" : "0"' >> META_new.json
+	$(NOECHO) $(ECHO) '   },' >> META_new.json
+	$(NOECHO) $(ECHO) '   "distribution_type" : "module",' >> META_new.json
 	$(NOECHO) $(ECHO) '   "dynamic_config" : 1,' >> META_new.json
-	$(NOECHO) $(ECHO) '   "generated_by" : "ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.120921",' >> META_new.json
-	$(NOECHO) $(ECHO) '   "license" : [' >> META_new.json
-	$(NOECHO) $(ECHO) '      "unknown"' >> META_new.json
-	$(NOECHO) $(ECHO) '   ],' >> META_new.json
+	$(NOECHO) $(ECHO) '   "generated_by" : "ExtUtils::MakeMaker version 6.66",' >> META_new.json
+	$(NOECHO) $(ECHO) '   "license" : "Artistic_2_0",' >> META_new.json
 	$(NOECHO) $(ECHO) '   "meta-spec" : {' >> META_new.json
-	$(NOECHO) $(ECHO) '      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",' >> META_new.json
-	$(NOECHO) $(ECHO) '      "version" : "2"' >> META_new.json
+	$(NOECHO) $(ECHO) '      "url" : "http://module-build.sourceforge.net/META-spec-v1.4.html",' >> META_new.json
+	$(NOECHO) $(ECHO) '      "version" : 20' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
 	$(NOECHO) $(ECHO) '   "name" : "Net-SNTP-Client",' >> META_new.json
 	$(NOECHO) $(ECHO) '   "no_index" : {' >> META_new.json
@@ -527,26 +530,18 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '         "inc"' >> META_new.json
 	$(NOECHO) $(ECHO) '      ]' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
-	$(NOECHO) $(ECHO) '   "prereqs" : {' >> META_new.json
-	$(NOECHO) $(ECHO) '      "build" : {' >> META_new.json
-	$(NOECHO) $(ECHO) '         "requires" : {' >> META_new.json
-	$(NOECHO) $(ECHO) '            "Test::More" : "0"' >> META_new.json
-	$(NOECHO) $(ECHO) '         }' >> META_new.json
-	$(NOECHO) $(ECHO) '      },' >> META_new.json
-	$(NOECHO) $(ECHO) '      "configure" : {' >> META_new.json
-	$(NOECHO) $(ECHO) '         "requires" : {' >> META_new.json
-	$(NOECHO) $(ECHO) '            "ExtUtils::MakeMaker" : "0"' >> META_new.json
-	$(NOECHO) $(ECHO) '         }' >> META_new.json
-	$(NOECHO) $(ECHO) '      },' >> META_new.json
-	$(NOECHO) $(ECHO) '      "runtime" : {' >> META_new.json
-	$(NOECHO) $(ECHO) '         "requires" : {' >> META_new.json
-	$(NOECHO) $(ECHO) '            "Test::Deep" : "0",' >> META_new.json
-	$(NOECHO) $(ECHO) '            "perl" : "5.006"' >> META_new.json
-	$(NOECHO) $(ECHO) '         }' >> META_new.json
+	$(NOECHO) $(ECHO) '   "requires" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '      "Test::Deep" : "0",' >> META_new.json
+	$(NOECHO) $(ECHO) '      "perl" : "5.006"' >> META_new.json
+	$(NOECHO) $(ECHO) '   },' >> META_new.json
+	$(NOECHO) $(ECHO) '   "resources" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '      "repository" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '         "type" : "git",' >> META_new.json
+	$(NOECHO) $(ECHO) '         "url" : "https://github.com/thanos1983/perl5-Net-SNTP-Client.git",' >> META_new.json
+	$(NOECHO) $(ECHO) '         "web" : "https://github.com/thanos1983/perl5-Net-SNTP-Client"' >> META_new.json
 	$(NOECHO) $(ECHO) '      }' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
-	$(NOECHO) $(ECHO) '   "release_status" : "stable",' >> META_new.json
-	$(NOECHO) $(ECHO) '   "version" : "0.19"' >> META_new.json
+	$(NOECHO) $(ECHO) '   "version" : "0.20"' >> META_new.json
 	$(NOECHO) $(ECHO) '}' >> META_new.json
 	-$(NOECHO) $(MV) META_new.json $(DISTVNAME)/META.json
 

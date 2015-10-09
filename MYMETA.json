@@ -3,14 +3,19 @@
    "author" : [
       "Athanasios Garyfalos <garyfalos@cpan.org>"
    ],
+   "build_requires" : {
+      "Test::More" : "0"
+   },
+   "configure_requires" : {
+      "ExtUtils::MakeMaker" : "0"
+   },
+   "distribution_type" : "module",
    "dynamic_config" : 0,
-   "generated_by" : "ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.120921",
-   "license" : [
-      "unknown"
-   ],
+   "generated_by" : "ExtUtils::MakeMaker version 6.66",
+   "license" : "Artistic_2_0",
    "meta-spec" : {
-      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
-      "version" : "2"
+      "url" : "http://module-build.sourceforge.net/META-spec-v1.4.html",
+      "version" : 20
    },
    "name" : "Net-SNTP-Client",
    "no_index" : {
@@ -19,24 +24,16 @@
          "inc"
       ]
    },
-   "prereqs" : {
-      "build" : {
-         "requires" : {
-            "Test::More" : "0"
-         }
-      },
-      "configure" : {
-         "requires" : {
-            "ExtUtils::MakeMaker" : "0"
-         }
-      },
-      "runtime" : {
-         "requires" : {
-            "Test::Deep" : "0",
-            "perl" : "5.006"
-         }
+   "requires" : {
+      "Test::Deep" : "0",
+      "perl" : "5.006"
+   },
+   "resources" : {
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/thanos1983/perl5-Net-SNTP-Client.git",
+         "web" : "https://github.com/thanos1983/perl5-Net-SNTP-Client"
       }
    },
-   "release_status" : "stable",
-   "version" : "0.19"
+   "version" : "0.20"
 }
