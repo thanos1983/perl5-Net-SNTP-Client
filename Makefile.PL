@@ -22,4 +22,14 @@ WriteMakefile(
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'Net-SNTP-Client-*' },
+    META_MERGE => {
+        'meta-spec' => { version => 20 },
+	    resources => {
+		repository => {
+		    type => 'git',
+		    url  => 'https://github.com/thanos1983/perl5-Net-SNTP-Client.git',
+		    web  => 'https://github.com/thanos1983/perl5-Net-SNTP-Client',
+		},
+	},
+    },
 );

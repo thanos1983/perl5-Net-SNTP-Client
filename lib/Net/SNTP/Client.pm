@@ -15,14 +15,14 @@ Net::SNTP::Client - Perl module to calculate the roundtrip delay d and
 
 =head1 VERSION
 
-Version 0.19
+Version 0.20
 
 
 =cut
 
 ## Version of the Net::SNTP::Client module
 
-our $VERSION = '0.19';
+our $VERSION = '0.20';
 $VERSION = eval $VERSION;
 
 
@@ -574,6 +574,11 @@ perl, IO::Socket, Net::NTP, Net::SNTP::Server, L<RFC4330|https://tools.ietf.org/
 Net::NTP has a similar focus as this module. In my opinion it
  is less accurate when it comes to the precission bellow second(s).
 
+=head1 REPOSITORY
+
+L<https://github.com/thanos1983/perl5-Net-SNTP-Client>
+
+
 =head1 DIFFERENCES FROM OTHER MODULES
 
 Based on the current known modules Net::SNTP::Client is only similar
@@ -642,7 +647,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 =head1 CHANGE LOG
 $Log: Client.pm,v $
-Revision 19.0  2015/09/29 7:17:21 pm  Thanos
+Revision 20.0  2015/10/9 5:52:21 pm  Thanos
 
 =cut
 
