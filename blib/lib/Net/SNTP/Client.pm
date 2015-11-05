@@ -15,14 +15,14 @@ Net::SNTP::Client - Perl module to calculate the roundtrip delay d and
 
 =head1 VERSION
 
-Version 0.19
+Version 0.21
 
 
 =cut
 
 ## Version of the Net::SNTP::Client module
 
-our $VERSION = '0.19';
+our $VERSION = '0.21';
 $VERSION = eval $VERSION;
 
 
@@ -119,16 +119,27 @@ This module exports a single method (getSNTPTime) and returns
 
 ## Define constands
 
-use constant {
-    TRUE             => 1,
-    FALSE            => 0,
-    TIMEOUT          => 10,
-    MAXBYTES         => 512,
-    UNIX_EPOCH       => 2208988800,
-    MIN_UDP_PORT     => 1,
-    MAX_UDP_PORT     => 65536,
-    DEFAULT_NTP_PORT => 123,
-};
+# The_version_of_constant provided by perl 5.6.1 does not support that.
+# use constant {
+#     TRUE             => 1,
+#     FALSE            => 0,
+#     TIMEOUT          => 10,
+#     MAXBYTES         => 512,
+#     UNIX_EPOCH       => 2208988800,
+#     MIN_UDP_PORT     => 1,
+#     MAX_UDP_PORT     => 65536,
+#     DEFAULT_NTP_PORT => 123,
+# };
+
+
+use constant TRUE             => 1;
+use constant FALSE            => 0;
+use constant TIMEOUT          => 10;
+use constant MAXBYTES         => 512;
+use constant UNIX_EPOCH       => 2208988800;
+use constant MIN_UDP_PORT     => 1;
+use constant MAX_UDP_PORT     => 65536;
+use constant DEFAULT_NTP_PORT => 123;
 
 =head2 getSNTPTime
 
@@ -574,6 +585,11 @@ perl, IO::Socket, Net::NTP, Net::SNTP::Server, L<RFC4330|https://tools.ietf.org/
 Net::NTP has a similar focus as this module. In my opinion it
  is less accurate when it comes to the precission bellow second(s).
 
+=head1 REPOSITORY
+
+L<https://github.com/thanos1983/perl5-Net-SNTP-Client>
+
+
 =head1 DIFFERENCES FROM OTHER MODULES
 
 Based on the current known modules Net::SNTP::Client is only similar
@@ -642,7 +658,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 =head1 CHANGE LOG
 $Log: Client.pm,v $
-Revision 19.0  2015/09/29 7:17:21 pm  Thanos
+Revision 21.0  2015/11/5 11:26:21 am  Thanos
 
 =cut
 

@@ -23,7 +23,7 @@ WriteMakefile(
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'Net-SNTP-Client-*' },
     META_MERGE => {
-        'meta-spec' => { version => 20 },
+        'meta-spec' => { version => 21 },
 	    resources => {
 		repository => {
 		    type => 'git',

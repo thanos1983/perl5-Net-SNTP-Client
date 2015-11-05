@@ -2,10 +2,12 @@
 abstract: 'Perl module to calculate the roundtrip delay d and'
 author:
   - 'Athanasios Garyfalos <garyfalos@cpan.org>'
-build_requires: {}
-distribution_type: module
+build_requires:
+  Test::More: 0
+configure_requires:
+  ExtUtils::MakeMaker: 0
 dynamic_config: 0
-generated_by: 'ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.120921'
+generated_by: 'ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.133380'
 license: unknown
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -15,6 +17,8 @@ no_index:
   directory:
     - t
     - inc
-resources:
-  repository: https://github.com/thanos1983/perl5-Net-SNTP-Client.git
-version: 0.20
+requires:
+  Test::Deep: 0
+  perl: 5.006
+resources: {}
+version: 0.21
