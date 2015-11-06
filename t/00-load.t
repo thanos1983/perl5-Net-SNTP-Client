@@ -85,7 +85,7 @@ my $hashRefExpected = {
 		'Stratum' => ignore(),
 		'Poll' => ignore(),
 		'Root Dispersion' => ignore(),
-		'LI' => 0,
+		'LI' => ignore(),
 		'Root Delay' => ignore(),
     },
 	't/00-load.t' => {

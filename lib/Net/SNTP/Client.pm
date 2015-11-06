@@ -15,14 +15,14 @@ Net::SNTP::Client - Perl module to calculate the roundtrip delay d and
 
 =head1 VERSION
 
-Version 0.21
+Version 0.22
 
 
 =cut
 
 ## Version of the Net::SNTP::Client module
 
-our $VERSION = '0.21';
+our $VERSION = '0.22';
 $VERSION = eval $VERSION;
 
 
@@ -658,7 +658,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 =head1 CHANGE LOG
 $Log: Client.pm,v $
-Revision 21.0  2015/11/5 11:26:21 am  Thanos
+Revision 22.0  2015/11/6 10:33:21 am  Thanos
 
 =cut
 

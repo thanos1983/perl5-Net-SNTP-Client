@@ -21,4 +21,4 @@ requires:
   Test::Deep: 0
   perl: 5.006
 resources: {}
-version: 0.21
+version: 0.22
